@@ -3,22 +3,22 @@ import { ContactService } from '../contact.service';
 import { Contact } from '../contact';
 
 @Component({
-  selector: 'app-contacts',
-  templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.css'],
-  providers: [ContactService]
+	selector: 'app-contacts',
+	templateUrl: './contacts.component.html',
+	styleUrls: ['./contacts.component.css'],
+	providers: [ContactService]  
 })
 export class ContactsComponent implements OnInit {
 
 	contacts:any;
 
-	constructor( private ContactService: ContactService) { }
+	constructor( private ContactService: ContactService ) { } // private ContactService: ContactService
 
   	ngOnInit() {
-  		// this.contactService.getContacts()
-  		// 	.subscribe( contacts => this.contacts = contacts );
+  		this.ContactService.getContacts()
+  			.subscribe( contacts => this.contacts = contacts );
   	
-  		console.log("This is testing the ldskfjlsdkfj");
+  		// console.log(this.contacts);
 
   	}
 

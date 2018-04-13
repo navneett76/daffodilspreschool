@@ -9,7 +9,7 @@ var app 		= express();
 const route 	= require("./routes/route");
 
 // connect to mongo db
-mongoose.connect('mongodb://localhost:27017/contact');
+mongoose.connect('mongodb://localhost:27017/daffodils');
 
 // on connection
 mongoose.connection.on("connected", () => {

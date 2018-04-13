@@ -1,13 +1,12 @@
 const express = require("express");
 const router = express.Router();
 
-const contact = require("../models/dbscript");
+const users = require("../models/users");
 
 router.get("/contacts", (req, res, next)=>{
-	res.send("Retriving the contact list.");
-	// contact.find(function(err, contacts){
-	// 	res.json(contacts);
-	// })
+	users.find(function(err, contacts){
+		res.json(contacts);
+	})
 });  
 
 // Insert the record.
@@ -30,7 +29,7 @@ router.post("contact", (req, res, next)=>{
 // delete the contact
 
 router.delete("contact/:id", (req, res, next)=>{
-	contact.remove({_id: req.params.id}, function(err, result){
+	users.remove({_id: req.params.id}, function(err, result){
 		if(err){
 			res.json(err);
 		}else{

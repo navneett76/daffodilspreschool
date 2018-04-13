@@ -1,4 +1,4 @@
-<div >
-	<h1>Contact List: </h1>
-	{{contacts}}
-</div>
+<h1>Contact List</h1>
+<ul *ngIf="contacts" >
+	<li *ngFor="let con of contacts">{{con.first_name}}</li>
+</ul>
