@@ -18,11 +18,9 @@ export class BlogfromComponent implements OnInit {
 	}
 
 	postcreate(){
-		// console.log(this.model);
 		this.blogPost.createPost(this.model)
 			.subscribe(retData => this.retmessage = retData);
 
-		// console.log(this.retmessage);
 	}
 
 }

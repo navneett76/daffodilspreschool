@@ -12,7 +12,6 @@ export class BlogpostService {
   constructor(private _http: Http  ) { }
 
   	createPost(postData){
-  		//title: postData.ptitle, description: postData.pdiscription
   		return this._http.post('http://localhost:3000/api/createpost', {title: postData.ptitle, description: postData.pdiscription})
   			.map(resPosponse => resPosponse.json);
   	}
