@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const users = require("../models/users");
+const blogpostModel = require("../models/blogpost");
 
 router.get("/contacts", (req, res, next)=>{
 	users.find(function(err, contacts){
@@ -10,20 +11,21 @@ router.get("/contacts", (req, res, next)=>{
 });  
 
 // Insert the record.
-router.post("contact", (req, res, next)=>{
-	let newContact = new Contact({
-		first_name: req.body.first_name,
-		last_name: req.body.last_name,
-		phone: req.body.phone
+router.post("/createpost", (req, res, next)=>{
+	
+	let blogpost = new blogpostModel({
+		title: req.body.title,
+		description: req.body.description
 	}); 
 
-	newContact.save((err, contact)=>{
-		if(err){
-			res.json({msg: "Fail to add contact"});
-		}else{
-			res.json({msg: "Contact add successfully."});
-		}
-	});
+	blogpost.save()
+    .then(item => {
+      res.json({"message": "Record inserted successfully."});
+    })
+    .catch(err => {
+      res.status(400).send("unable to save to database"+req);
+    });
+	
 });
 
 // delete the contact

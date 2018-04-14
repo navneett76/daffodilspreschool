@@ -1,0 +1,24 @@
+1) Import a from module from /forms and "import" into the @NgModules FormsModule
+import { FormsModule } from '@angular/forms';
+
+2) Import the NGform module in component file.
+import { NgForm } from '@angular/forms';
+
+3) Create a form inside the template file of the component
+<form method="POST" action="/register" id="signup-form">
+  <label for="email">Email</label>
+  <input type="text" name="email" id="email">
+
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password">
+
+  <button type="submit">Sign Up</button>
+</form>
+
+4) And submit the action inside the component 
+export class SignupFormComponent {
+  registerUser(form: NgForm) {
+    console.log(form.value);
+    // {email: '...', password: '...'}
+    // ...
+  }

@@ -2,7 +2,7 @@
 // https://www.youtube.com/watch?v=wtIvu085uU0
 var express 	= require('express');
 var mongoose 	= require("mongoose");
-var bodyparser  = require("body-parser");
+var bodyParser = require('body-parser');
 var cors 		= require("cors");
 var path 		= require("path");
 var app 		= express();
@@ -27,7 +27,8 @@ mongoose.connection.on("error", (err) => {
 // 	res.send("Hello user from server.js file.")
 // });
 app.use(cors());
-app.use(bodyparser.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(express());
 app.use('/api', route);
 app.use(express.static(__dirname + "/public"));

@@ -1,0 +1,22 @@
+<h1>Create Post</h1>
+<form method="POST" action="" id="createpost" (ngSubmit)="frm.form.valid && postcreate()" #frm="ngForm" novalidate >
+	<span class="fld-container" >
+		<label for="ptitle">Title</label>
+		<input type="text" class="form-controle form-control" name="ptitle" id="ptitle" [(ngModel)]="model.ptitle" #ptitle="ngModel" required minlength="4" />
+		<span *ngIf="ptitle.errors && ( ptitle.dirty || ptitle.touched) " class="alert alert-danger" >
+			<label [hidden]="!ptitle.errors.required" class="help-block">Please enter title!!	</label>
+			<label [hidden]="!ptitle.errors.minlength"  class="help-block">Please enter minimum 4 characters.</label>
+		</span>
+	</span>
+	<span class="fld-container" >	
+		<label for="pdiscription">Discription</label>
+		<textarea class="form-controle form-control" name="pdiscription" id="pdiscription" [(ngModel)]="model.pdiscription" #pdisc="ngModel" required  minlength="4" ></textarea> 
+		<span *ngIf="pdisc.errors && ( pdisc.dirty || pdisc.touched )"  class="alert alert-danger">
+			<label [hidden]="!pdisc.errors.required" class="help-block">Please enter the description!!</label>
+			<label [hidden]="!pdisc.errors.minlength" class="help-block">Please enter minimum 4 characters.</label>
+		</span>
+	</span>
+	<span class="fld-container" >	
+		<button type="submit" class="btn btn-primary" >Submit</button>
+	</span>
+</form>

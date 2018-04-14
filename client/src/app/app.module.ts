@@ -11,6 +11,9 @@ import {routing} from "./app.route";
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ServicesComponent } from './services/services.component';
 import { BlogComponent } from './blog/blog.component';
+import { FormsModule } from '@angular/forms';
+import { BlogfromComponent } from './blogfrom/blogfrom.component';
+import { AlertModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,10 +23,11 @@ import { BlogComponent } from './blog/blog.component';
     ContactsComponent,
     AboutusComponent,
     ServicesComponent,
-    BlogComponent
+    BlogComponent,
+    BlogfromComponent
   ],
   imports: [
-    BrowserModule, HttpModule, RouterModule, routing, 
+    BrowserModule, HttpModule, RouterModule, routing, AlertModule.forRoot(), FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

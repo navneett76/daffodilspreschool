@@ -6,7 +6,7 @@ import { ContactsComponent } from './contacts/contacts.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { ServicesComponent } from './services/services.component';
 import { BlogComponent } from './blog/blog.component';
-
+import { BlogfromComponent } from './blogfrom/blogfrom.component';
 
 const appRoutes: Routes = [
    { path: 'home', component: HomeComponent },
@@ -14,6 +14,7 @@ const appRoutes: Routes = [
    { path: 'aboutus', component: AboutusComponent },
    { path: 'services', component: ServicesComponent },
    { path: 'blog', component: BlogComponent },
+   { path: 'blogform', component: BlogfromComponent },
    { path: 'contact', component: ContactsComponent },
    { path: '**', component: PageNotFoundComponent },
 ];
