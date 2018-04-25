@@ -1,15 +1,21 @@
 <h1>Create Post</h1>
-{{retmessage._body}}
+<h2>{{retmessage}}</h2>
 <!-- function () { if (typeof this._body === 'string') { return JSON.parse(/** @type {?} */ (this._body)); } if (this._body instanceof ArrayBuffer) { return JSON.parse(this.text()); } return this._body; }  -->
 <form method="POST" action="" id="createpost" (ngSubmit)="frm.form.valid && postcreate()" #frm="ngForm" novalidate >
 	
 	<span class="fld-container" >
-		<label for="ptitle">Title</label>
-		<input type="text" class="form-controle form-control" name="ptitle" id="ptitle" [(ngModel)]="model.ptitle" #ptitle="ngModel"  minlength="4" required />
-		<span *ngIf="ptitle.errors && ( ptitle.dirty || ptitle.touched) " class="" >
-			<label [hidden]="!ptitle.errors.required" class="help-block">Please enter title!!	</label>
-			<label [hidden]="!ptitle.errors.minlength"  class="help-block">Please enter minimum 4 characters.</label>
+		<label for="title">Title</label>
+		<input type="text" class="form-controle form-control" name="title" id="title" [(ngModel)]="model.title" #title="ngModel"  minlength="4" required />
+		<span *ngIf="title.errors && ( title.dirty || title.touched ) " class="" >
+				
+			<label [hidden]="title.errors.required" class="help-block">Please enter title!!	</label>
+			<label [hidden]="title.errors.minlength"  class="help-block">Please enter minimum 4 characters.</label>
 		</span>
+	</span>
+	<span class="fld-container" >
+		<label for="title">Image</label>
+		<input type="file" name="selImage" name="selImage"  class="btn btn-success">
+		<button class="btn btn-primary" (click)="uploadImage();">Upload Image</button>
 	</span>
 	<span class="fld-container" >	
 		<label for="pdiscription">Discription</label>
@@ -20,6 +26,7 @@
 		</span>
 	</span>
 	<span class="fld-container" >	
+		<input type="hidden" name="userId" id="userId" [(ngModel)]="model.userId" #userId="ngModel"  >
 		<button type="submit" class="btn btn-primary" >Submit</button>
 		
 	</span>
@@ -55,9 +62,9 @@
 			<label class="postTitle">Title</label>
 			<label class="postDesc">Description</label>
 		</li>
-		<li *ngFor="let post of pagedItems|filter:term  index as i " class="blogpostContainer">
+		<li *ngFor="let post of pagedItems|filter:term  index as i " class="blogpostContainer" id="{{post._id}}">
 			<label class="ind">{{i+1}}</label>
-			<label class="ind"><a (click)="editPost(post._id)">Edit</a> / <a (click)="deletePost(post._id)" >Delete</a></label>
+			<label class="ind"><a (click)="postEdit(post._id)" >Edit </a> &nbsp; <a (click)="deletePost(post._id)" >Delete</a> </label>
 			<label class="postTitle">{{post.title}}</label>
 			<label class="postDesc">{{post.description}}</label>
 		</li>
