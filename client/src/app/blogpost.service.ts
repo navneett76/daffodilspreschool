@@ -12,24 +12,35 @@ export class BlogpostService {
   constructor(private _http: Http  ) { }
 
   	createPost(postData){
-  		return this._http.post('http://localhost:3000/api/createpost', {title: postData.ptitle, description: postData.pdiscription})
-  			.map(resPosponse => {
-  				return resPosponse; 
-  			});
+  		// console.log(postData); //return false;
+  		if("userId" in postData){
+  			// console.log("OOOOOOOOOOOOOOOO"); return false;
+  			return this._http.post('http://localhost:3000/api/updatePost', {title: postData.title, description: postData.pdiscription, uId: postData.userId})
+  			.map(res => res.json());
+
+  		}else{
+  			// insert the record/
+  			return this._http.post('http://localhost:3000/api/createpost', {title: postData.title, description: postData.pdiscription})
+  			.map(res => res.json());
+  		}
+  		
+  	}
+
+	editPost(postId){
+  		return this._http.get('http://localhost:3000/api/editPost/'+postId)
+  			.map(res => res.json());
 
   	}
 
   	deletePost(postId){
-  		return this._http.delete("http://localhost:3000/api/deletePost")
-  			.map(res => {
-  				return res;
-  			})
+  		return this._http.delete("http://localhost:3000/api/deletePost/"+postId)
+  			.map(res => res.json());
   			
   	}
 
   	searchPosts(){
   		return this._http.get("http://localhost:3000/api/listpost")
-  					.map(res => res.json());
+  			.map(res => res.json());
   	}
 
 }
