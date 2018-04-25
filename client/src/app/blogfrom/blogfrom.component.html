@@ -1,9 +1,12 @@
 <h1>Create Post</h1>
+{{retmessage._body}}
+<!-- function () { if (typeof this._body === 'string') { return JSON.parse(/** @type {?} */ (this._body)); } if (this._body instanceof ArrayBuffer) { return JSON.parse(this.text()); } return this._body; }  -->
 <form method="POST" action="" id="createpost" (ngSubmit)="frm.form.valid && postcreate()" #frm="ngForm" novalidate >
+	
 	<span class="fld-container" >
 		<label for="ptitle">Title</label>
-		<input type="text" class="form-controle form-control" name="ptitle" id="ptitle" [(ngModel)]="model.ptitle" #ptitle="ngModel" required minlength="4" />
-		<span *ngIf="ptitle.errors && ( ptitle.dirty || ptitle.touched) " class="alert alert-danger" >
+		<input type="text" class="form-controle form-control" name="ptitle" id="ptitle" [(ngModel)]="model.ptitle" #ptitle="ngModel"  minlength="4" required />
+		<span *ngIf="ptitle.errors && ( ptitle.dirty || ptitle.touched) " class="" >
 			<label [hidden]="!ptitle.errors.required" class="help-block">Please enter title!!	</label>
 			<label [hidden]="!ptitle.errors.minlength"  class="help-block">Please enter minimum 4 characters.</label>
 		</span>
@@ -18,5 +21,47 @@
 	</span>
 	<span class="fld-container" >	
 		<button type="submit" class="btn btn-primary" >Submit</button>
+		
 	</span>
 </form>
+<hr class="seperator" />
+<!-- {{posts}} -->
+<!-- pager -->
+<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(1)">First</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+    </li>
+    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+        <a (click)="setPage(page)">{{page}}</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.currentPage + 1)">Next</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.totalPages)">Last</a>
+    </li>
+</ul>
+<span>
+	<input type="text" [(ngModel)]="term" placeholder="Search" class="search form-control" />
+	<ul *ngIf="pagedItems?.length > 0" class="postContainer">
+		 
+		<li  class="blogpostContainer" >
+			<label class="ind"></label>
+			<label class="ind">Action</label>
+			<label class="postTitle">Title</label>
+			<label class="postDesc">Description</label>
+		</li>
+		<li *ngFor="let post of pagedItems|filter:term  index as i " class="blogpostContainer">
+			<label class="ind">{{i+1}}</label>
+			<label class="ind"><a (click)="editPost(post._id)">Edit</a> / <a (click)="deletePost(post._id)" >Delete</a></label>
+			<label class="postTitle">{{post.title}}</label>
+			<label class="postDesc">{{post.description}}</label>
+		</li>
+		
+	</ul>
+
+</span>

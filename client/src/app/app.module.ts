@@ -14,6 +14,7 @@ import { BlogComponent } from './blog/blog.component';
 import { FormsModule } from '@angular/forms';
 import { BlogfromComponent } from './blogfrom/blogfrom.component';
 import { AlertModule } from 'ngx-bootstrap';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { AlertModule } from 'ngx-bootstrap';
     BlogfromComponent
   ],
   imports: [
-    BrowserModule, HttpModule, RouterModule, routing, AlertModule.forRoot(), FormsModule
+    BrowserModule, HttpModule, RouterModule, routing, AlertModule.forRoot(), FormsModule, Ng2SearchPipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

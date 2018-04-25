@@ -13,7 +13,23 @@ export class BlogpostService {
 
   	createPost(postData){
   		return this._http.post('http://localhost:3000/api/createpost', {title: postData.ptitle, description: postData.pdiscription})
-  			.map(resPosponse => resPosponse.json);
+  			.map(resPosponse => {
+  				return resPosponse; 
+  			});
+
+  	}
+
+  	deletePost(postId){
+  		return this._http.delete("http://localhost:3000/api/deletePost")
+  			.map(res => {
+  				return res;
+  			})
+  			
+  	}
+
+  	searchPosts(){
+  		return this._http.get("http://localhost:3000/api/listpost")
+  					.map(res => res.json());
   	}
 
 }
