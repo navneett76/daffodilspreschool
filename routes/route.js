@@ -20,13 +20,21 @@ router.post("/createpost", (req, res, next)=>{
 
 	blogpost.save()
     .then(item => {
-      res.json({"message": "Record inserted successfully."});
+      res.send("Record inserted successfully.");
     })
     .catch(err => {
-      res.status(400).send("unable to save to database"+req);
+      res.send("unable to save to database");
+      // res.status(400).send("unable to save to database"+req);
     });
 	
 });
+
+// get posts from the db
+router.get("/listpost", (req, res, next)=>{
+	blogpostModel.find({title: {$ne: null}},function(err, posts){
+		res.json(posts);
+	})
+});  
 
 // delete the contact
 

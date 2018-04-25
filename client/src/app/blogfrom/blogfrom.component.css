@@ -28,3 +28,33 @@ textarea.ng-pristine, textarea.ng-invalid  {
     padding: 1% 20% 2%;
     color: red !important;
 }
+.seperator {
+    float: left;
+    width: 100%;
+    color: #000;
+    margin: auto 0 5% ;
+}
+.postContainer{
+	float:left;
+	background: #fff;
+	color: #000;
+	margin: 2% 0;
+}
+.blogpostContainer {
+    float: left;
+    width: 100%;
+    margin: 2% 0;
+    list-style-type: none;
+}
+.ind{
+	float: left;
+	width: 10%;
+}
+.postTitle{
+	float: left;
+	width: 20%;
+}
+.postDesc{
+	float: left;
+	width: 60%;	
+}
