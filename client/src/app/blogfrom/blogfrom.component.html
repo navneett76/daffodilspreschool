@@ -14,8 +14,8 @@
 	</span>
 	<span class="fld-container" >
 		<label for="title">Image</label>
-		<input type="file" name="selImage" name="selImage"  class="btn btn-success">
-		<button class="btn btn-primary" (click)="uploadImage();">Upload Image</button>
+		<input type="file" name="selImage" name="selImage" (change)="uploadImage($event);" class="btn btn-success">
+		<button class="btn btn-primary" (click)="uploadImageFile();" >Upload Image</button>
 	</span>
 	<span class="fld-container" >	
 		<label for="pdiscription">Discription</label>

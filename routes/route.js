@@ -1,8 +1,13 @@
 const express = require("express");
 const router = express.Router();
 
+const multer 	= require('multer');
+// const ejs		= require('ejs');
+// const path 		= require('path')
+
 const users = require("../models/users");
 const blogpostModel = require("../models/blogpost");
+;
 
 router.get("/contacts", (req, res, next)=>{
 	users.find(function(err, contacts){
@@ -74,6 +79,34 @@ router.delete("/deletePost/:id", (req, res, next)=>{
 			res.json('Record has been deleted.');
 		}
 	});
+});
+
+// router.post("/uploadImageFile", (req, res, next)=> {
+// 	// add logic to upload image using mutler.
+// 	return 1;
+// });
+
+
+
+var store 	= multer.diskStorage({
+	destination: function(req, file, cb){
+		cb(null, './public/uploads');
+	},
+	filename: function(req, file, cb){
+		cb(null, Date.now()+"."+file.originalname);
+	}
+});
+
+var upload = multer({storage:store}).single('file'); 
+router.post('/uploadImageFile', function(req, res, next){
+	upload(req,res,function(err){
+        console.log(req.file);
+        if(err){
+             res.json({error_code:1,err_desc:err});
+             return;
+        }
+         res.json({error_code:0,err_desc:null});
+    });
 });
 
 

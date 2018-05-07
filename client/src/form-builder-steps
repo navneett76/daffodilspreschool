@@ -22,3 +22,15 @@ export class SignupFormComponent {
     // {email: '...', password: '...'}
     // ...
   }
+
+
+ ------------------------------------------------------------------------------
+
+ Upload image:
+ ----------------------------
+	 https://www.youtube.com/watch?v=YkvqLNcJz3Y - Angular part.
+	 https://www.youtube.com/watch?v=9Qzmri1WaaE
+
+ Upload multiple image
+ --------------------------
+ 	https://www.youtube.com/watch?v=NsHgvKeAEDI

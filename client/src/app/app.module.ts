@@ -15,6 +15,9 @@ import { FormsModule } from '@angular/forms';
 import { BlogfromComponent } from './blogfrom/blogfrom.component';
 import { AlertModule } from 'ngx-bootstrap';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { UserComponent } from './user/user.component';
+import { GalleryComponent } from './gallery/gallery.component';
+import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AboutusComponent,
     ServicesComponent,
     BlogComponent,
-    BlogfromComponent
+    BlogfromComponent,
+    UserComponent,
+    GalleryComponent,
+    FileSelectDirective
   ],
   imports: [
     BrowserModule, HttpModule, RouterModule, routing, AlertModule.forRoot(), FormsModule, Ng2SearchPipeModule

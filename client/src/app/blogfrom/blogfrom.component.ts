@@ -14,6 +14,8 @@ export class BlogfromComponent implements OnInit, OnDestroy {
 	userEditData: any = {};
 	retmessage: string='' ;
 	
+	selectedFile: File = null;
+
 	postData: any = {};
 	// array of all items to be paged
     private posts: any[];
@@ -104,6 +106,22 @@ export class BlogfromComponent implements OnInit, OnDestroy {
 
   			});
   		
+  	}
+
+  	uploadImage(event){
+  		// console.log(event);
+  		this.selectedFile = <File> event.target.files[0];
+  	}
+
+  	uploadImageFile(){
+
+  		// const fd = new FormData();
+  		// fd.append('image', this.selectedFile, this.selectedFile.name);
+  		this.blogPost.uplaodImage(this.selectedFile)
+  			.subscribe(res=>{
+  				console.log(res);
+  			});
+  		// console.log(this.selectedFile);
   	}
 
   	ngOnDestroy() {
