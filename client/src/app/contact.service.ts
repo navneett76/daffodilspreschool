@@ -6,6 +6,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ContactService{
 
+	headers: any;
+
 	constructor( private http: Http){}
 
 	// retriving contact service
@@ -28,5 +30,22 @@ export class ContactService{
 		return this.http.delete("http://localhost:3000/api/contact"+id)
 				.map( res => res.json());
 	}
+
+
+	userData = [
+	    {
+	    	// username: 623543, 
+	    	// password: 'W43AAG34'
+	    	username: 'rajesh', 
+	    	password: 'dev@123'
+	    }
+	];
+
+	userAuthenticate(){
+		return this.http.post("http://localhost:5000/api/login", this.userData, {
+        })
+       .map(res =>  res.json());
+	}
+
 }
 

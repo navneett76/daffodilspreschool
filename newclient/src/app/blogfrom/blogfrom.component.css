@@ -1,0 +1,64 @@
+label{
+	font-weight: 100;
+}
+.fld-container{
+	float:left;
+	width: 100%;
+	padding: 2px;
+}
+.fld-container label {
+    width: 20%;
+    float: left;
+    color: #000;
+}
+.form-controle {
+    width: 70%;
+}
+input.ng-pristine, input.ng-invalid,
+textarea.ng-pristine, textarea.ng-invalid  {
+	float: left;
+	width: 70%;
+	border: 1px solid red;
+}
+.alert .alert-danger{
+	float: left;
+	width: 100%;
+	color: #fff;
+}
+.help-block{
+    float: left;
+    width: 100% !important;
+    padding: 1% 20% 2%;
+    color: red !important;
+}
+.seperator {
+    float: left;
+    width: 100%;
+    color: #000;
+    margin: auto 0 5% ;
+}
+.postContainer{
+	float:left;
+	background: #fff;
+	color: #000;
+	margin: 2% 0;
+	width: 100%;
+}
+.blogpostContainer {
+    float: left;
+    width: 100%;
+    margin: 2% 0;
+    list-style-type: none;
+}
+.ind{
+	float: left;
+	width: 10%;
+}
+.postTitle{
+	float: left;
+	width: 20%;
+}
+.postDesc{
+	float: left;
+	width: 60%;	
+}

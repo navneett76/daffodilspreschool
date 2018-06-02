@@ -19,9 +19,13 @@ import { UserComponent } from './user/user.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
 
-// import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-// import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-// import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+
+// import {MatGridListModule} from '@angular/material/grid-list';
+import {MatListModule} from '@angular/material/list';
+
 // import 'hammerjs';
 
 
@@ -40,9 +44,10 @@ import { FileSelectDirective, FileDropDirective } from 'ng2-file-upload';
     FileSelectDirective
   ],
   imports: [
-    BrowserModule, HttpModule, RouterModule, routing, AlertModule.forRoot(), FormsModule, Ng2SearchPipeModule
+    BrowserModule, HttpModule, RouterModule, routing, AlertModule.forRoot(), FormsModule, Ng2SearchPipeModule 
+    , BrowserAnimationsModule, NoopAnimationsModule , MatButtonModule, MatCheckboxModule, MatListModule
     
-    // , BrowserAnimationsModule, NoopAnimationsModule, MatButtonModule, MatCheckboxModule
+    // , MatButtonModule, MatCheckboxModule, MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

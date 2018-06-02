@@ -1,9 +1,10 @@
-const express = require("express");
-const router = express.Router();
+const express 	= require("express");
+const router 	= express.Router();
+var passport	= require("passport");
+// require('../config/passport')(passport);
+require('../config/passport/local-passport')(passport);
 
 const multer 	= require('multer');
-// const ejs		= require('ejs');
-// const path 		= require('path')
 
 const users = require("../models/users");
 const blogpostModel = require("../models/blogpost");

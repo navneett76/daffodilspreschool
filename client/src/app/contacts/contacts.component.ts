@@ -11,6 +11,7 @@ import { Contact } from '../contact';
 export class ContactsComponent implements OnInit {
 
 	contacts:any;
+	users: any;
 
 	constructor( private ContactService: ContactService ) { } // private ContactService: ContactService
 
@@ -18,7 +19,16 @@ export class ContactsComponent implements OnInit {
   		this.ContactService.getContacts()
   			.subscribe( contacts => this.contacts = contacts );
   	
-  		// console.log(this.contacts);
+  		// this.ContactService.userAuthenticate()
+  		// 	.subscribe( user => function(){
+  		// 		// this.users = user
+  		// 		console.log("user");
+  		// 	});
+  		this.ContactService.userAuthenticate().subscribe(
+           data => console.log(this.users = data),
+           err => console.log(err),
+           () => console.log('Request Completed')
+        );
 
   	}
 

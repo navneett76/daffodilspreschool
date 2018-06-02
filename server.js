@@ -7,6 +7,16 @@ var mongoose 	= require("mongoose");
 var bodyParser  = require('body-parser');
 var cors 		= require("cors");
 var path 		= require("path");
+var passport	= require("passport");
+var logger 		= require('morgan');
+var cookieParser = require('cookie-parser');
+var LocalStrategy = require('passport-local').Strategy;
+var passportauth= require("passport-jwt");
+
+// require('./config/passport/jwt-passport')(passport);
+// require('./config/passport/local-passport')(passport);
+// require('./config/passport/oauth-passport')(passport);
+
 var app 		= express();
 const route 	= require("./routes/route");
 
@@ -30,7 +40,7 @@ mongoose.connection.on("error", (err) => {
 // });
 // app.use(cors());
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST');
   res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
   res.setHeader('Access-Control-Allow-Credentials', true);
@@ -39,10 +49,28 @@ app.use(function (req, res, next) {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(passport.initialize());
+
 // app.use(express());
 app.use('/api', route);
 app.use(express.static(__dirname + "/public"));
 
+
+// passport.use(new LocalStrategy(
+//   function(username, password, done) {
+//     User.findOne({ username: username }, function(err, user) {
+//       if (err) { return done(err); }
+//       if (!user) {
+//         return done(null, false, { message: 'Incorrect username.' });
+//       }
+//       if (!user.validPassword(password)) {
+//         return done(null, false, { message: 'Incorrect password.' });
+//       }
+//       return done(null, user);
+//     });
+//   }
+// ));
 
 app.listen('3000');
 console.log("server running in port 3000");

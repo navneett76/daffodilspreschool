@@ -1,0 +1,74 @@
+<h1>Create Post</h1>
+<h2>{{retmessage}}</h2>
+<!-- function () { if (typeof this._body === 'string') { return JSON.parse(/** @type {?} */ (this._body)); } if (this._body instanceof ArrayBuffer) { return JSON.parse(this.text()); } return this._body; }  -->
+<form method="POST" action="" id="createpost" (ngSubmit)="frm.form.valid && postcreate()" #frm="ngForm" novalidate >
+	
+	<span class="fld-container" >
+		<label for="title">Title</label>
+		<input type="text" class="form-controle form-control" name="title" id="title" [(ngModel)]="model.title" #title="ngModel"  minlength="4" required />
+		<span *ngIf="title.errors && ( title.dirty || title.touched ) " class="" >
+				
+			<label [hidden]="title.errors.required" class="help-block">Please enter title!!	</label>
+			<label [hidden]="title.errors.minlength"  class="help-block">Please enter minimum 4 characters.</label>
+		</span>
+	</span>
+	<span class="fld-container" >
+		<label for="title">Image</label>
+		<input type="file" name="selImage" name="selImage" (change)="uploadImage($event);" class="btn btn-success">
+		<button class="btn btn-primary" (click)="uploadImageFile();" >Upload Image</button>
+	</span>
+	<span class="fld-container" >	
+		<label for="pdiscription">Discription</label>
+		<textarea class="form-controle form-control" name="pdiscription" id="pdiscription" [(ngModel)]="model.pdiscription" #pdisc="ngModel" required  minlength="4" ></textarea> 
+		<span *ngIf="pdisc.errors && ( pdisc.dirty || pdisc.touched )"  class="alert alert-danger">
+			<label [hidden]="!pdisc.errors.required" class="help-block">Please enter the description!!</label>
+			<label [hidden]="!pdisc.errors.minlength" class="help-block">Please enter minimum 4 characters.</label>
+		</span>
+	</span>
+	<span class="fld-container" >	
+		<input type="hidden" name="userId" id="userId" [(ngModel)]="model.userId" #userId="ngModel"  >
+		<button type="submit" class="btn btn-primary" >Submit</button>
+		
+	</span>
+</form>
+<hr class="seperator" />
+<!-- {{posts}} -->
+<!-- pager -->
+<ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(1)">First</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === 1}">
+        <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+    </li>
+    <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+        <a (click)="setPage(page)">{{page}}</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.currentPage + 1)">Next</a>
+    </li>
+    <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+        <a (click)="setPage(pager.totalPages)">Last</a>
+    </li>
+</ul>
+<span>
+	<input type="text" [(ngModel)]="term" placeholder="Search" class="search form-control" />
+	<ul *ngIf="pagedItems?.length > 0" class="postContainer">
+		 
+		<li  class="blogpostContainer" >
+			<label class="ind"></label>
+			<label class="ind">Action</label>
+			<label class="postTitle">Title</label>
+			<label class="postDesc">Description</label>
+		</li>
+		<li *ngFor="let post of pagedItems|filter:term  index as i " class="blogpostContainer" id="{{post._id}}">
+			<label class="ind">{{i+1}}</label>
+			<label class="ind"><a (click)="postEdit(post._id)" >Edit </a> &nbsp; <a (click)="deletePost(post._id)" >Delete</a> </label>
+			<label class="postTitle">{{post.title}}</label>
+			<label class="postDesc">{{post.description}}</label>
+		</li>
+		
+	</ul>
+
+</span>
