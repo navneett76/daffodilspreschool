@@ -1,15 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+// import { ChildComponent } from "./aboutuschild.component";
 
 @Component({
   selector: 'app-aboutus',
   templateUrl: './aboutus.component.html',
-  styleUrls: ['./aboutus.component.css']
+  styleUrls: ['./aboutus.component.css'],
+  providers:[]
 })
-export class AboutusComponent implements OnInit {
+export class AboutusComponent implements OnInit, AfterViewInit  {
 
-  constructor() { }
+	// @ViewChild(ChildComponent) child;
+	// parentMessage = "message from parent"
+	book: any[] = [{
+		bookReviews:15
+	}]
 
-  ngOnInit() {
-  }
+ 	constructor() { }
+
+ 	message:string;
+
+	ngOnInit() {
+
+	}
+
+	ngAfterViewInit(){
+		// console.log("Hello friends: "+JSON.stringify(this.child));
+		// this.message = this.child.message
+	}
 
 }
